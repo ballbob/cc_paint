@@ -7,7 +7,7 @@ window.onload = function () {
     tools.forEach(function (tool) {
         tool.onclick = function() {
             currentTool = this.value
-            console.log(currentTool)
+            canvas.onclick = canvasClickHandler // it works, but..?
         }
     })
 
@@ -20,6 +20,7 @@ window.onload = function () {
                 canvas.onclick = canvasClickHandler
             }
             break
+
         case "circle":
             drawCircle(event.x, event.y)
             break
