@@ -24,7 +24,11 @@ window.onload = function () {
         case "circle":
             drawCircle(event.x, event.y)
             break
+        case "square":
+            context.strokeRect(event.x-25, event.y-25, 50, 50)
+            break
         }
+        
     }
 
     canvas.onclick = canvasClickHandler
