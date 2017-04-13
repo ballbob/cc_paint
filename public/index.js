@@ -11,12 +11,13 @@ window.onload = function () {
         }
     })
 
-    canvas.onclick = function (event) {
+    var canvasClickHandler = function (event) {
         switch (currentTool) {
         case "line":
             drawLineStart(event.x, event.y)
             canvas.onclick = function (event) {
                 drawLineEnd(event.x, event.y)
+                canvas.onclick = canvasClickHandler
             }
             break
         case "circle":
@@ -24,6 +25,8 @@ window.onload = function () {
             break
         }
     }
+
+    canvas.onclick = canvasClickHandler
 
     var drawLineStart = function (x, y) {
         context.beginPath()
