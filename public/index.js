@@ -11,15 +11,28 @@ window.onload = function () {
         }
     })
 
-    canvas.onclick = function(event) {
+    canvas.onclick = function (event) {
         switch (currentTool) {
         case "line":
-            console.log("LINE!")
+            drawLineStart(event.x, event.y)
+            canvas.onclick = function (event) {
+                drawLineEnd(event.x, event.y)
+            }
             break
         case "circle":
             drawCircle(event.x, event.y)
             break
         }
+    }
+
+    var drawLineStart = function (x, y) {
+        context.beginPath()
+        context.moveTo(x, y) 
+    }
+
+    var drawLineEnd = function (x, y) {
+        context.lineTo(x, y)
+        context.stroke()
     }
 
     var drawCircle = function (x, y) {
