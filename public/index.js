@@ -25,10 +25,9 @@ window.onload = function () {
             drawCircle(event.x, event.y)
             break
         case "square":
-            context.strokeRect(event.x-25, event.y-25, 50, 50)
+            drawSquare(event.x,event.y)
             break
         }
-        
     }
 
     canvas.onclick = canvasClickHandler
@@ -47,6 +46,11 @@ window.onload = function () {
         context.beginPath()
         context.arc(x, y, 50, 0, 2 * Math.PI);
         context.stroke()
+    }
+
+    var drawSquare = function(x,y){
+        size = 50
+        context.strokeRect(x-size/2,y-size/2,size,size)
     }
 
 }
