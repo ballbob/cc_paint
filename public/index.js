@@ -4,12 +4,20 @@ window.onload = function () {
     var currentTool
 
     var tools = document.querySelectorAll("input")
-    tools.forEach(function (tool) {
+        tools.forEach(function (tool) {
         tool.onclick = function() {
             currentTool = this.value
             canvas.onclick = canvasClickHandler // it works, but..?
         }
     })
+
+    // determine which tool is selected
+    for (var i = 0, length = tools.length; i < length; i++) {
+        if (tools[i].checked) {
+            currentTool = tools[i].value
+            break
+        }
+    }
 
     var canvasClickHandler = function (event) {
         switch (currentTool) {
@@ -44,7 +52,7 @@ window.onload = function () {
 
     var drawCircle = function (x, y) {
         context.beginPath()
-        context.arc(x, y, 50, 0, 2 * Math.PI);
+        context.arc(x, y, 25, 0, 2 * Math.PI);
         context.stroke()
     }
 
