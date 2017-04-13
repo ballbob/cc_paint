@@ -1,6 +1,7 @@
 window.onload = function () {
     var canvas = document.querySelector("canvas")
     var context = canvas.getContext("2d")
+    var currentTool
 
     var tools = document.querySelectorAll("input")
     tools.forEach(function (tool) {
@@ -10,15 +11,25 @@ window.onload = function () {
         }
     })
 
-    for (var i = 0, length = tools.length; i < length; i++) {
-    if (tools[i].checked) {
-        // do whatever you want with the checked radio
-        console.log(tools[i].value);
-        break; // only one can be checked
+    canvas.onclick = function(event) {
+        switch (currentTool) {
+        case "line":
+            console.log("LINE!")
+            break
+        case "circle":
+            drawCircle(event.x, event.y)
+            break
+        }
     }
-}
+
+    var drawCircle = function (x, y) {
+        context.beginPath()
+        context.arc(x, y, 50, 0, 2 * Math.PI);
+        context.stroke()
+    }
 
 }
+
 
     // // let's also get a handle to our colour picker
     // var colourPicker = document.querySelector("input")
@@ -32,11 +43,7 @@ window.onload = function () {
 
 
 
-    // var drawCircle = function (x, y) {
-    //     context.beginPath()
-    //     context.arc(x, y, 50, 0, 2 * Math.PI);
-    //     context.stroke()
-    // }
+
     
     // // let's totally draw a filled Wrecked Angel
     // // the TOP LEFT is 0, 0; we work down and right
